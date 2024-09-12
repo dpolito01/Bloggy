@@ -3,11 +3,14 @@ using Bloggy.Web.Data;
 using Bloggy.Web.Models.Domain;
 using Bloggy.Web.Models.ViewModel;
 using Bloggy.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bloggy.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class AdminTagsController : Controller
     {
         private readonly ITagRepository tagRepository;
@@ -16,7 +19,6 @@ namespace Bloggy.Web.Controllers
         {
             this.tagRepository = tagRepository;
         }
-
 
         [HttpGet]
         public IActionResult Add()
